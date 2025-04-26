@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+    <script>
+      const cozeWebSDK = new CozeWebSDK.WebChatClient({
+  config: {
+    botId: '7492951980739346487',
+    isIframe: false,
+  },
+  auth:  {
+    type: 'token',
+    token: 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP',
+    onRefreshToken: async () => 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP',
+  },
+  userInfo: {
+      id: '123',
+      url: 'https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/obric/coze/favicon.1970.png',
+      nickname: '3qweqweqwe',
+    },
+    ui: {
+      base: {
+          icon: 'https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/obric/coze/favicon.1970.png',
+          layout: 'pc',
+          zIndex: 1000,
+      },
+      asstBtn: {
+          isNeed: false,
+      },
+    },
+});
+
+    </script>
+</body>
+</html>
