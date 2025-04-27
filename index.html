@@ -12,45 +12,48 @@
             transform: translate(-50%, -50%);
             width: 380px;
             height: 600px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-
+            border: 1px solid #ddd; /* 临时边框，用于调试 */
+            z-index: 1000;
         }
         
-        /* 移动端适配 */
-
+        /* 调试用：如果容器可见但内容为空 */
+        #coze-chat-container:empty::after {
+            content: "Coze 聊天窗口加载中...";
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
-    <!-- 居中容器 -->
     <div id="coze-chat-container"></div>
     
-    <!-- Coze SDK -->
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-    
-    <!-- 主逻辑 -->
     <script>
-        const chatBot = new CozeWebSDK.WebChatClient({
-            config: {
-                bot_id: '7492951980739346487',
-            },
-            auth: {
-                type: 'token',
-                token: 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP', // 用你的真实token或GitHub Secrets替换
-                onRefreshToken: async () => 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP'
-            },
-            ui: {
-                asstBtn: {
-                    isNeed: false // 完全隐藏悬浮球
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatBot = new CozeWebSDK.WebChatClient({
+                config: {
+                    bot_id: '7492951980739346487' // 替换你的真实 bot_id
                 },
-                chatBot: {
-                    el: document.getElementById('coze-chat-container'),
-                    defaultOpen: true // 页面加载后自动显示
+                auth: {
+                    type: 'token',
+                    token: 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP', // 替换你的 token
+                    onRefreshToken: async () => 'pat_2ECxjWAAF0Zlu7LlcyRfHegMUeXdKIF2kozfLtTcG0Vm6ujeQC0fc1ZOGrYmODbP'
+                },
+                ui: {
+                    asstBtn: { isNeed: false },
+                    chatBot: {
+                        el: document.getElementById('coze-chat-container'),
+                        defaultOpen: true
+                    }
                 }
-            }
+            });
+            
+            // 调试：打印 SDK 状态
+            console.log('Coze SDK initialized:', chatBot);
         });
-
-
     </script>
 </body>
 </html>
